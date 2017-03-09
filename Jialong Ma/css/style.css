@@ -1,0 +1,25 @@
+#html { 
+  background: url('http://img10.deviantart.net/bb49/i/2010/060/8/5/dark_mountains_by_ah_photographie.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#downArrow { 
+    
+}
+
+body {
+    /*margin-left: 10px;*/
+}
+
+p {
+    text-indent: 20px;
+    margin-left: 10px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    text-indent: 20px;
+    margin-left: 10px;
+}
