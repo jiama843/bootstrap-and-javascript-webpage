@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Back to Top</a>
+                    <a onclick="scrollUp()">Back to Top</a>
                 </li>
                 <li>
                     <a href="#">About</a>
@@ -207,10 +207,21 @@
             function(){
                 window.scrollBy(0, 10);
                 countPX += 10;
-                if(countPX >= 700){
+                if(countPX >= 2000){
                     clearInterval(scroll);
                 }
-            }, 10);
+            }, 5);
+    }
+    function scrollUp(){
+        var countPX = 2000;
+        var scroll = setInterval(
+            function(){
+                window.scrollBy(0, -10);
+                countPX -= 10;
+                if(countPX <= 10){
+                    clearInterval(scroll);
+                }
+            }, 5);
     }
     </script>
 </body>
