@@ -10,10 +10,6 @@
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>   
     <script src="js/bootstrap.min.js"></script>
     <script src="js/rain.js"></script>
-    
-    <script>
-        document.draw();//Figure out whats wrong and the link between html and javascript
-    </script>
 </head>
 <body id = "body">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -31,7 +27,7 @@
                     <a onclick="scrollUp()">Back to Top</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a onclick="startRain()">About</a>
                 </li>
                 <li>
                     <a href="#">Contact</a>
@@ -55,55 +51,13 @@
                 <br>
                 <div class="col-xs-10" style="background-color:darkgrey;">
                     <h3>CS is fun</h3>
-                    <p style="color:black">Making the pieces and seeing it come together is one of the most gratifying parts in any project.</p>
+                    <p style="color:black">A current 1B computer science major at the University of Waterloo. Making the pieces and seeing it come together is one of the most gratifying parts in any project.</p>
                     <br>
                     <div class="row">
                         <br>
                         <div class="col-xs-10" style="background-color:grey;">
                             <h4>Lets go downstairs</h4>
                             <p style="color:black">You may have been wondering what the arrow on the right was for. Go ahead and Click it!</p>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
                             <br>
                             <br>
                             <br>
@@ -191,15 +145,39 @@
             </div>
         </div>
     </div>
-    <div class="row" style="backgroundcolor:black">
-        <div class="column-xs-12" id="rainelem" style="backgroundcolor:black">
+    <div class="row" style="background-color:grey">
+        <br>
+        <br>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="column-xs-12" id="rainelem" style="background-color:black">
             <br>
             <br>
             <br>
             <br>
             <h1 class="text-center" style="color:lightgrey">Do you like rain?</h1>
             <br>
-            <br>
+            <p class="text-center" style="color:lightgrey"> Maybe sometime, it will be possible to implement the rain animation.</p>
             <br>
             <br>
             <br>
@@ -225,7 +203,7 @@
                 if(countPX >= rect.top){
                     clearInterval(scroll);
                 }
-            }, 5);
+            }, 3);
     }
     function scrollUp(){
         //var myElement = document.getElementById("end");
@@ -238,8 +216,36 @@
                 if(countPX <= 0){
                     clearInterval(scroll);
                 }
-            }, 5);
+            }, 3);
     }
+    function startRain(){
+        var dropspeed = [];
+        var drops = document.getElementsByClassName("rain");
+        var myElement = document.getElementById("rainelem");
+        var len = drops.length;
+        var rect = myElement.getBoundingClientRect();
+        //var elem = document.getElementById("rain");
+        for (var i = 0; i < len; i++) {
+            dropspeed[i] = Math.random() * (10 - 0);
+            drops[i].style.left = (Math.random() * (window.innerWidth - 0)) + 'px';
+        }
+        var pos = 0;
+        var raindrops = setInterval(
+            function(){
+                if(pos > 200){
+                    clearInterval(rain);
+                }
+                pos++;
+                for(var i = 0; i < len; i++){
+                    drops[i].style.top = (pos * dropspeed[i]) + 1500 + 'px';
+                }
+            }, 10);
+    }
+    /*function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }*/
     </script>
 </body>
 </html>
