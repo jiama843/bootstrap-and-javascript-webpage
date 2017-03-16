@@ -27,10 +27,10 @@
                     <a onclick="scrollUp()">Back to Top</a>
                 </li>
                 <li>
-                    <a onclick="startRain()">About</a>
+                    <a onclick="startRain()">Toggle Rain</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a onclick="stopRain()">Stop Rain</a>
                 </li>
             </ul>
         </div>
@@ -170,6 +170,28 @@
         <div class="rain"></div>
         <div class="rain"></div>
         <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
         <div class="column-xs-12" id="rainelem" style="background-color:black">
             <br>
             <br>
@@ -177,7 +199,7 @@
             <br>
             <h1 class="text-center" style="color:lightgrey">Do you like rain?</h1>
             <br>
-            <p class="text-center" style="color:lightgrey"> Maybe sometime, it will be possible to implement the rain animation.</p>
+            <p class="text-center" style="color:lightgrey" id="tired"> Go ahead and make it happen by clicking the Toggle Rain Button.</p>
             <br>
             <br>
             <br>
@@ -218,28 +240,42 @@
                 }
             }, 3);
     }
+    var repeatrain = true;
+    function stopRain(){
+        document.getElementById("tired").innerHTML = "Want it to rain some more? Go ahead and make it happen by clicking the Toggle Rain Button.";
+        repeatrain = false;   
+    }
     function startRain(){
+        repeatrain = true;
         var dropspeed = [];
+        var pos = [];
         var drops = document.getElementsByClassName("rain");
         var myElement = document.getElementById("rainelem");
         var len = drops.length;
         var rect = myElement.getBoundingClientRect();
         //var elem = document.getElementById("rain");
         for (var i = 0; i < len; i++) {
-            dropspeed[i] = Math.random() * (10 - 0);
+            pos[i] = 2100;
+            dropspeed[i] = Math.random() * (10 - 1);
             drops[i].style.left = (Math.random() * (window.innerWidth - 0)) + 'px';
         }
-        var pos = 0;
+        document.getElementById("tired").innerHTML = "Tired of the rain yet? It's ok. You can hit the Stop Rain button.";
+        
+        //while(repeatrain){
         var raindrops = setInterval(
             function(){
-                if(pos > 200){
-                    clearInterval(rain);
+                if(repeatrain == false){
+                    clearInterval(raindrops);
                 }
-                pos++;
                 for(var i = 0; i < len; i++){
-                    drops[i].style.top = (pos * dropspeed[i]) + 1500 + 'px';
+                    pos[i] += dropspeed[i];
+                    drops[i].style.top = pos[i] + 'px';
+                    if(pos[i] > 2500){
+                        pos[i] = 2100;
+                    }
                 }
             }, 10);
+        //}
     }
     /*function getRandomInt(min, max) {
         min = Math.ceil(min);
